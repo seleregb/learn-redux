@@ -1,0 +1,8 @@
+const INCREMENT_LIKES = 'INCREMENT_LIKES';
+const ADD_COMMENT = 'ADD_COMMENT';
+const REMOVE_COMMENT = 'REMOVE_COMMENT';
+
+const ActionTypes = { INCREMENT_LIKES, ADD_COMMENT, REMOVE_COMMENT };
+
+export default ActionTypes;
+
