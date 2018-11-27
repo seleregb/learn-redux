@@ -1,5 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { hot } from 'react-hot-loader';
 import * as actionCreators from '../actions/actionCreators';
 import Main from './Main';
 
@@ -16,4 +17,4 @@ function mapDispatchToProps(dispatch) {
 
 const App = connect(mapStateToProps, mapDispatchToProps)(Main);
 
-export default App;
+export default hot(module)(App);
