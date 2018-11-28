@@ -20,14 +20,14 @@ module.exports = {
   plugins: [
     // new webpack.optimize.OccurrenceOrderPlugin(), // not needed anymore
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin()
   ],
   module: {
-    loaders: [
+    rules: [
       // js
       {
         test: /\.js$/,
-        loaders: ['babel'],
+        loader: "babel-loader",
         include: path.join(__dirname, 'client'),
         options: {
           // This is a feature of `babel-loader` for webpack (not Babel itself).
@@ -41,7 +41,7 @@ module.exports = {
       {
         test: /\.styl$/,
         include: path.join(__dirname, 'client'),
-        loader: 'style-loader!css-loader!stylus-loader'
+        use: ['style-loader', 'css-loader', 'stylus-loader']
       }
     ]
   }

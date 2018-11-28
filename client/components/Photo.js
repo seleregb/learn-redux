@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import { Link } from 'react-router-dom';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 const Photo = React.createClass({
   render() {

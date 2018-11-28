@@ -12,7 +12,7 @@ import Single from './components/Single';
 import PhotoGrid from './components/PhotoGrid';
 
 // Import react router deps
-import { Router, Route, IndexRoute } from 'react-router';
+import { Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store, { history } from './store';
 
@@ -30,7 +30,7 @@ const router = (
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
-        <IndexRoute component={PhotoGrid}></IndexRoute>
+        <Route exact component={PhotoGrid}></Route>
         <Route path="/view/:postId" component={Single}></Route>
       </Route>
     </Router>
@@ -40,6 +40,6 @@ const router = (
 
 render(router, document.getElementById('root'));
 
-if (module.hot) {
-  module.hot.accept();
-}
+// if (module.hot) {
+//   module.hot.accept();
+// }

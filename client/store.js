@@ -1,6 +1,6 @@
 import { createStore, compose } from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { browserHistory } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 
 
 // Import the root reducer
@@ -23,7 +23,7 @@ const enhancers = compose(
 
 const store = createStore(rootReducer, defaultState, enhancers);
 
-export const history = syncHistoryWithStore(browserHistory, store);
+export const history = syncHistoryWithStore(BrowserRouter, store);
 
 if (module.hot) {
   module.hot.accept('./reducers/', () => {

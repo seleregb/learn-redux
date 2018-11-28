@@ -1,6 +1,7 @@
 {
   "presets": [
-    "env"
+    "@babel/preset-env",
+    "@babel/preset-react"
   ],
   "env": {
     "development": {
@@ -14,6 +15,7 @@
         "@babel/preset-react"
       ],
       "plugins": [
+        "react-hot-loader/babel",
         [
           "@babel/plugin-proposal-object-rest-spread"
         ]
