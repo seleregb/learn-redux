@@ -1,15 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { connect } from "react-redux";
 import Photo from './Photo';
+import Main from './Main';
+@connect((store) => ({
+  posts: store.postsReducer,
+  comments: store.postsReducer
+}))
 
-const PhotoGrid = React.createClass({
+class PhotoGrid extends React.Component {
   render() {
+
+    const { posts } = this.props;
+
+    console.log(this.props);
+
     return (
-      <div className="photo-grid">
-        {this.props.posts.map((post, index) => <Photo {...this.props} key={index} index={index} post={post} />)}
+      <div>
+        <Main />
+        <div className="photo-grid" >
+          {posts.map((post, index) => <Photo {...this.props} key={index} index={index} post={post} />)}
+        </div>
       </div>
+
     )
   }
-})
+}
 
 export default PhotoGrid;

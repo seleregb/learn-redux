@@ -1,6 +1,24 @@
 import React from 'react';
+import { removeComments, addComments } from '../actions/actionCreators';
 
-const Comments = React.createClass({
+class Comments extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.deleteComment = this.deleteComment.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderComment = this.renderComment.bind(this);
+
+    this.state = {
+      postComments: []
+    };
+  }
+
+  componentDidMount() {
+    const { postComments } = this.props;
+    if (postComments) console.log(postComments);
+    this.setState({ postComments });
+  }
 
   renderComment(comment, index) {
     return (
@@ -9,28 +27,30 @@ const Comments = React.createClass({
           <strong>{comment.user}</strong>
           {comment.text}
           <button className="remove-comment"
-            onClick={this.deleteComment.bind(null, index)}>
+            onClick={this.deleteComment.bind(this, index)}>
             &times;
            </button>
         </p>
       </div>
     );
-  },
+  }
 
   handleSubmit(e) {
     e.preventDefault();
-    const { postId } = this.props.params;
+    const { postId } = this.props.match.params;
     const { author, comment, commentForm } = this.refs;
-    this.props.addComment(postId, author.value, comment.value);
+    this.props.dispatch(addComments(postId, author.value, comment.value));
     commentForm.reset();
-  },
+  }
 
   deleteComment(index) {
-    const { postId } = this.props.params;
-    this.props.removeComment(postId, index);
-  },
+    const { postId } = this.props.match.params;
+    this.props.dispatch(removeComments(postId, index));
+  }
 
   render() {
+
+    const { postComments } = this.props;
 
     return (
       <div className="comments">
@@ -43,6 +63,6 @@ const Comments = React.createClass({
       </div>
     );
   }
-});
+};
 
 export default Comments;

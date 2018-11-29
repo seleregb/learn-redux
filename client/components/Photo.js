@@ -1,11 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { Link, withRouter } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
+import { connect } from "react-redux";
+import { incrementLikes } from '../actions/actionCreators';
 
-const Photo = React.createClass({
+@connect((store) => ({
+  comments: store.commentsReducer
+}))
+
+class Photo extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.incrementLikes = this.incrementLikes.bind(this);
+  }
+
+  incrementLikes() {
+    const { index } = this.props;
+    this.props.dispatch(incrementLikes(index));
+  }
+
   render() {
-
-    const { post, index, comments } = this.props;
+    const { post, comments } = this.props;
 
     return (
       <figure className="grid-figure">
@@ -14,18 +30,17 @@ const Photo = React.createClass({
             <img src={post.display_src} alt={post.caption} className="grid-photo"></img>
           </Link>
 
-          <CSSTransitionGroup transitionName="like"
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={500}>
+          <CSSTransition classNames="like"
+            timeout={500} unmountOnExit>
             <span key={post.likes} className="likes-heart">{post.likes}</span>
 
-          </CSSTransitionGroup>
+          </CSSTransition>
         </div>
 
         <figcaption>
           <p>{post.caption}</p>
           <div className="control-buttons">
-            <button className="likes" onClick={this.props.increment.bind(null, index)}>
+            <button className="likes" onClick={this.incrementLikes}>
               &hearts; {post.likes}
             </button>
             <Link className="button" to={`/view/${post.code}`}>
@@ -40,6 +55,6 @@ const Photo = React.createClass({
       </figure>
     );
   }
-});
+}
 
 export default Photo;

@@ -1,27 +1,32 @@
-import ActionTypes from "../actions/actionTypes";
+import { ADD_COMMENT, REMOVE_COMMENT } from "../actions/actionTypes";
+import comments from '../data/comments';
 
-function comments(state = [], action) {
+const initialState = {
+  comments: comments
+}
+
+export const commentsReducer = (state = initialState.comments, action) => {
   if (typeof action.postId !== 'undefined') {
     return {
       // take the current state
       ...state,
       // override this post with a new one
-      [action.postId]: postComments(state[action.postId], action),
+      [action.postId]: postComments(state[action.postId], action)
     }
   }
   return state;
 
 }
 
-function postComments(state = [], action) {
+const postComments = (state = [], action) => {
   switch (action.type) {
-    case (ActionTypes.ADD_COMMENT):
+    case (ADD_COMMENT):
       // return the new state with the new comment
       return [...state, {
         user: action.author,
         text: action.comment
       }];
-    case (ActionTypes.REMOVE_COMMENT):
+    case (REMOVE_COMMENT):
       // return the new state without the deleted comment
       return [
         // from the start to the one to delete
@@ -34,4 +39,4 @@ function postComments(state = [], action) {
   }
 }
 
-export default comments;
+// export default commentsReducer;

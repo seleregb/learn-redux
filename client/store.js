@@ -1,29 +1,29 @@
-import { createStore, compose } from 'redux';
-import { syncHistoryWithStore } from 'react-router-redux';
-import { BrowserRouter } from 'react-router-dom';
-
+import { createStore, compose, applyMiddleware } from 'redux';
+import createHistory from "history/createBrowserHistory";
+import thunk from "redux-thunk";
 
 // Import the root reducer
 import rootReducer from './reducers/index';
 
-import comments from './data/comments';
-import posts from './data/posts';
+// import comments from './data/comments';
+// import posts from './data/posts';
 
 
-// create an object for the default data
-const defaultState = {
-  posts,
-  comments
-};
+// // create an object for the default data
+// const defaultState = {
+//   posts,
+//   comments
+// };
 
 // activate redux dev tools extension if user has it installed
-const enhancers = compose(
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(rootReducer, defaultState, enhancers);
+export const history = createHistory();
 
-export const history = syncHistoryWithStore(BrowserRouter, store);
+const store = createStore(rootReducer, composeEnhancers(
+  applyMiddleware(thunk)
+));
+
 
 if (module.hot) {
   module.hot.accept('./reducers/', () => {
