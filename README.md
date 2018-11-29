@@ -1,5 +1,5 @@
 # learn-redux
-An implementation of React.js &amp; Redux.js
+An implementation of React.js (^16.6.3) &amp; Redux.js
 
 ## Running
 
