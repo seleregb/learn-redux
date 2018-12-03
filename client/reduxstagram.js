@@ -1,23 +1,18 @@
 // let's go!
 import React from 'react';
-
-import { render } from 'react-dom';
+import ReactDOM from "react-dom";
 
 // Import css
 import './styles/style.styl';
 
-// Import Components
-import App from './components/App';
-import Single from './components/Single';
-import PhotoGrid from './components/PhotoGrid';
-
 // Import react router deps
-import { Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
 import store, { history } from './store';
 
 import Raven from 'raven-js';
 import { sentry_url } from './data/config';
+import App from './components/App';
 
 // Raven.config(sentry_url, {
 //   tags: {
@@ -26,20 +21,15 @@ import { sentry_url } from './data/config';
 //   }
 // }).install();
 
-const router = (
-  <Provider store={store}>
-    <Router history={history}>
-      <Switch>
-        <Route exact path="/" component={PhotoGrid} />
-        <Route path="/view/:postId" component={Single} />
-      </Switch>
-    </Router>
-  </Provider>
-
+const render = Component => (
+  ReactDOM.render(
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <Component history={history} />
+      </ConnectedRouter>
+    </Provider>,
+    document.getElementById("root")
+  )
 )
 
-render(router, document.getElementById('root'));
-
-// if (module.hot) {
-//   module.hot.accept();
-// }
+render(App);

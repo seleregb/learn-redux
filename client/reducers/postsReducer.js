@@ -1,14 +1,17 @@
-import { INCREMENT_LIKES } from '../actions/actionTypes';
+import { INCREMENT_LIKES, SINGLE_POST, ALL_POSTS } from '../actions/actionTypes';
+// import { LOCATION_CHANGE } from 'react-router-redux';
+
 import posts from '../data/posts';
 
 const initialState = {
-  posts: posts
+  posts: posts,
+  locationBeforeTransitions: null
 }
 
 export const postsReducer = (state = initialState.posts, action) => {
   switch (action.type) {
     case INCREMENT_LIKES:
-      const index = action.index;
+      let index = action.index;
       return [
         ...state.slice(0, index),
         // before the one we are updating
@@ -18,10 +21,14 @@ export const postsReducer = (state = initialState.posts, action) => {
         },
         ...state.slice(index + 1) // after the one we are updating
       ];
-    default:
-      return state;
+    case SINGLE_POST:
+      // let index = action.index;
+      return {
+        ...state,
+        ...state[index],
+      };
   }
-
+  return state;
 }
 
 // export default postsReducer;

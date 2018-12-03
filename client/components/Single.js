@@ -1,16 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router';
-
+import { withRouter } from 'react-router';
 import Photo from './Photo';
 import Comments from './Comments';
 import { connect } from 'react-redux';
-import Main from './Main';
 
+@withRouter
 @connect((store) => ({
   posts: store.postsReducer,
   comments: store.commentsReducer
 }))
-
 
 class Single extends React.Component {
   render() {
@@ -22,7 +20,6 @@ class Single extends React.Component {
 
     return (
       <div>
-        <Main />
         <div className="single-photo">
           <Photo index={index} post={post} {...this.props} />
           <Comments postComments={postComments} {... this.props} />

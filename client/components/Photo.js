@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from "react-redux";
 import { incrementLikes } from '../actions/actionCreators';
@@ -13,11 +13,18 @@ class Photo extends React.Component {
   constructor(props) {
     super(props)
     this.incrementLikes = this.incrementLikes.bind(this);
+    this.viewPostDetails = this.viewPostDetails.bind(this);
   }
 
   incrementLikes() {
     const { index } = this.props;
     this.props.dispatch(incrementLikes(index));
+  }
+
+  viewPostDetails(event) {
+    event.preventDefault();
+    const { post } = this.props;
+    this.props.history.push(`/view/${post.code}`)
   }
 
   render() {
@@ -29,6 +36,8 @@ class Photo extends React.Component {
           <Link to={`/view/${post.code}`}>
             <img src={post.display_src} alt={post.caption} className="grid-photo"></img>
           </Link>
+          {/* <img src={post.display_src} alt={post.caption} className="grid-photo" onClick={this.viewPostDetails}></img> */}
+
 
           <CSSTransition classNames="like"
             timeout={500} unmountOnExit>
@@ -43,6 +52,9 @@ class Photo extends React.Component {
             <button className="likes" onClick={this.incrementLikes}>
               &hearts; {post.likes}
             </button>
+            {/* <a className="button" onClick={this.viewPostDetails}>
+              
+            </a> */}
             <Link className="button" to={`/view/${post.code}`}>
               <span className="comment-count">
                 {' '}<span className="speech-bubble"></span>

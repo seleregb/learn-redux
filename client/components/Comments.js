@@ -8,16 +8,6 @@ class Comments extends React.Component {
     this.deleteComment = this.deleteComment.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderComment = this.renderComment.bind(this);
-
-    this.state = {
-      postComments: []
-    };
-  }
-
-  componentDidMount() {
-    const { postComments } = this.props;
-    if (postComments) console.log(postComments);
-    this.setState({ postComments });
   }
 
   renderComment(comment, index) {
@@ -54,7 +44,7 @@ class Comments extends React.Component {
 
     return (
       <div className="comments">
-        {this.props.postComments.map(this.renderComment)}
+        {postComments.map(this.renderComment)}
         <form ref="commentForm" className="comment-form" onSubmit={this.handleSubmit}>
           <input type="text" ref="author" placeholder="author" />
           <input type="text" ref="comment" placeholder="comment" />

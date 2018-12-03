@@ -1,4 +1,4 @@
-import { INCREMENT_LIKES, ADD_COMMENT, REMOVE_COMMENT, FETCH_COMMENTS } from './actionTypes';
+import { INCREMENT_LIKES, ADD_COMMENT, REMOVE_COMMENT, ALL_POSTS, SINGLE_POST } from './actionTypes';
 
 // Increment
 // export function increment(index) {
@@ -43,8 +43,16 @@ export const removeComments = (postId, index) => {
   });
 }
 
-export const fetchComments = (postId) => {
+export const fetchPosts = () => {
   return (dispatch) => dispatch({
-    type: FETCH_COMMENTS, postId
+    type: ALL_POSTS,
+    payload: location
   });
+}
+
+export const fetchSinglePost = (postId, index) => {
+  return (dispatch) => dispatch({
+    type: SINGLE_POST, postId, index,
+    payload: location
+  })
 }

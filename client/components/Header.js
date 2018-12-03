@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-class Main extends React.Component {
+class Header extends React.Component {
 
   render() {
-
-    const { history } = this.props;
 
     return (
       <div>
@@ -17,4 +15,4 @@ class Main extends React.Component {
   }
 }
 
-export default Main;
+export default Header;

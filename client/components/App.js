@@ -1,26 +1,19 @@
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as actionCreators from '../actions/actionCreators';
-import Main from './Main';
+import React from "react";
+import { RouterComponent } from "./Router";
+import Header from "./Header";
 import { hot } from 'react-hot-loader';
-import PhotoGrid from './PhotoGrid';
 
-
-function mapStateToProps(state) {
-  return {
-    posts: state.posts,
-    comments: state.comments
+class App extends React.Component {
+  render() {
+    const { history } = this.props;
+    return (
+      <div id="main">
+        <Header />
+        <RouterComponent history={history} location={location} />
+      </div>
+    )
   }
 }
 
-// const mapDispatchToProps = dispatch => ({
-//   updateTime: () => dispatch(fetchNewTime())
-// })
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch);
-}
-
-const App = connect(mapStateToProps, mapDispatchToProps)(PhotoGrid);
 
 export default hot(module)(App);
