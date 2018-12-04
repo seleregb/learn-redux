@@ -41,19 +41,19 @@ module.exports = {
     ],
     splitChunks: {
       chunks: 'all',
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all'
-        },
-        styles: {
-          name: 'styles',
-          test: /\.css$/,
-          chunks: 'all',
-          enforce: true
-        }
-      }
+      // cacheGroups: {
+      //   vendors: {
+      //     test: /[\\/]node_modules[\\/]/,
+      //     name: 'vendors',
+      //     chunks: 'all'
+      //   },
+      //   styles: {
+      //     name: 'styles',
+      //     test: /\.css$/,
+      //     chunks: 'all',
+      //     enforce: true
+      //   }
+      // }
     }
   },
   module: {
