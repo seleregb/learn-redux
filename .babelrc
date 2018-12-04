@@ -23,14 +23,23 @@
           }
         ],
         "@babel/plugin-proposal-object-rest-spread",
-        "@babel/plugin-proposal-class-properties"
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-syntax-dynamic-import"
       ]
     },
     "production": {
-      "plugins": [
+      "presets": [
         [
-          "@babel/plugin-proposal-object-rest-spread"
-        ]
+          "@babel/preset-env",
+          {
+            "modules": false
+          }
+        ],
+        "@babel/preset-react"
+      ],
+      "plugins": [
+        "@babel/plugin-proposal-object-rest-spread",
+        "@babel/plugin-syntax-dynamic-import"
       ]
     }
   }

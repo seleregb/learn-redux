@@ -9,13 +9,16 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   mode: 'production',
   devtool: 'source-map',
-  entry: [
-    './client/reduxstagram.js'
-  ],
+  entry: {
+    "app": [
+      "@babel/polyfill",
+      "./client/reduxstagram"
+    ]
+  },
   output: {
-    path: path.join(__dirname, 'docs'),
-    filename: '[name].bundle.js',
-    // publicPath: '/static/'
+    path: path.resolve(__dirname, "./docs"),
+    publicPath: "/",
+    filename: "[name].bundle.js"
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -28,62 +31,52 @@ module.exports = {
       inject: "body"
     })
   ],
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          cache: true,
-          parallel: true,
-          sourceMap: true,
-          warnings: false
-        }
-      })
-    ],
-    splitChunks: {
-      chunks: 'all',
-      // cacheGroups: {
-      //   vendors: {
-      //     test: /[\\/]node_modules[\\/]/,
-      //     name: 'vendors',
-      //     chunks: 'all'
-      //   },
-      //   styles: {
-      //     name: 'styles',
-      //     test: /\.css$/,
-      //     chunks: 'all',
-      //     enforce: true
-      //   }
-      // }
-    }
-  },
+  // optimization: {
+  //   minimizer: [
+  //     new UglifyJsPlugin({
+  //       uglifyOptions: {
+  //         cache: true,
+  //         parallel: true,
+  //         sourceMap: true,
+  //         warnings: false
+  //       }
+  //     })
+  //   ],
+  //   splitChunks: {
+  //     chunks: 'all',
+  //     // cacheGroups: {
+  //     //   vendors: {
+  //     //     test: /[\\/]node_modules[\\/]/,
+  //     //     name: 'vendors',
+  //     //     chunks: 'all'
+  //     //   },
+  //     //   styles: {
+  //     //     name: 'styles',
+  //     //     test: /\.css$/,
+  //     //     chunks: 'all',
+  //     //     enforce: true
+  //     //   }
+  //     // }
+  //   }
+  // },
   module: {
     rules: [
       // js
       {
         test: /\.js$/,
+        exclude: /node_modules/,
         loader: ['babel-loader'],
-        include: path.join(__dirname, 'client')
+        include: path.join(__dirname, 'client'),
+        // options: {
+        //   presets: ["@babel/preset-env"]
+        // }
       },
       // CSS
       {
         test: /\.styl$/,
         include: path.join(__dirname, 'client'),
         use: ['style-loader', 'css-loader', 'stylus-loader']
-      },
-      // {
-      //   test: /\.styl$/,
-      //   use: [
-      //     {
-      //       loader: 'stylus-loader',
-      //       // options: {
-      //       //   // you can specify a publicPath here
-      //       //   // by default it use publicPath in webpackOptions.output
-      //       //   publicPath: '../'
-      //       // }
-      //     },
-      //     "css-loader", 'style-loader'
-      //   ]
-      // }
+      }
     ]
   }
 };
