@@ -9,7 +9,7 @@ import rootReducer from './reducers/index';
 // activate redux dev tools extension if user has it installed
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export const history = createBrowserHistory();
+export const history = createBrowserHistory({ basename: process.env.PUBLIC_URL });
 
 // const store = createStore(rootReducer, composeEnhancers(
 //   applyMiddleware(thunk)

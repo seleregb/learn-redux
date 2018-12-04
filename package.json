@@ -18,7 +18,7 @@
   },
   "author": "Gbenro Selere",
   "license": "MIT",
-  "homepage": "https://github.com/seleregb/learn-redux",
+  "homepage": "https://seleregb.github.io/learn-redux",
   "dependencies": {
     "@babel/core": "^7.1.6",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
