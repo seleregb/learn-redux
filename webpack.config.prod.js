@@ -8,7 +8,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   mode: 'production',
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
   entry: [
     './client/reduxstagram.js'
   ],
