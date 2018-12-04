@@ -17,8 +17,8 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, "./docs"),
-    publicPath: "/",
+    path: path.resolve(__dirname, "./docs/static"),
+    publicPath: path.relative(__dirname, "static/"),
     filename: "[name].bundle.js"
   },
   plugins: [
