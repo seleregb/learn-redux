@@ -5,6 +5,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ReactRootPlugin = require("html-webpack-react-root-plugin");
 
 module.exports = {
   mode: 'production',
@@ -21,44 +22,32 @@ module.exports = {
     filename: "[name].bundle.js"
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Learn Redux',
+      inject: 'body'
+    }),
+    // new ReactRootPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': 'production'
       }
-    }),
-    new HtmlWebpackPlugin({
-      title: "Learn Redux",
-      inject: "body"
     })
   ],
-  // optimization: {
-  //   minimizer: [
-  //     new UglifyJsPlugin({
-  //       uglifyOptions: {
-  //         cache: true,
-  //         parallel: true,
-  //         sourceMap: true,
-  //         warnings: false
-  //       }
-  //     })
-  //   ],
-  //   splitChunks: {
-  //     chunks: 'all',
-  //     // cacheGroups: {
-  //     //   vendors: {
-  //     //     test: /[\\/]node_modules[\\/]/,
-  //     //     name: 'vendors',
-  //     //     chunks: 'all'
-  //     //   },
-  //     //   styles: {
-  //     //     name: 'styles',
-  //     //     test: /\.css$/,
-  //     //     chunks: 'all',
-  //     //     enforce: true
-  //     //   }
-  //     // }
-  //   }
-  // },
+  optimization: {
+    // minimizer: [
+    //   new UglifyJsPlugin({
+    //     uglifyOptions: {
+    //       cache: true,
+    //       parallel: true,
+    //       sourceMap: true,
+    //       warnings: false
+    //     }
+    //   })
+    // ],
+    splitChunks: {
+      chunks: 'all'
+    }
+  },
   module: {
     rules: [
       // js
