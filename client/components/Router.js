@@ -1,9 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-// import PhotoGrid from "./PhotoGrid";
-// import Single from "./Single";
 import { withRouter } from 'react-router-dom';
-import { DynamicImport } from './DynamicImport';
+import DynamicImport from './DynamicImport';
 
 const PhotoGrid = (props) => (
   <DynamicImport load={() => import('./PhotoGrid')}>

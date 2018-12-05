@@ -1,5 +1,4 @@
 import { INCREMENT_LIKES, SINGLE_POST, ALL_POSTS } from '../actions/actionTypes';
-// import { LOCATION_CHANGE } from 'react-router-redux';
 
 import posts from '../data/posts';
 

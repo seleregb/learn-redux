@@ -1,8 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
-// import Photo from './Photo';
-// import Comments from './Comments';
 import { connect } from 'react-redux';
+import DynamicImport from './DynamicImport';
 
 const Photo = (props) => (
   <DynamicImport load={() => import('./Photo')}>

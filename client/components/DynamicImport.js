@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class DynamicImport extends Component {
+export default class DynamicImport extends Component {
   state = {
     component: null
   }
