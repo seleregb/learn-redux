@@ -1,5 +1,5 @@
 import React from "react";
-import { RouterComponent } from "./Router";
+import RouterComponent from "./Router";
 import Header from "./Header";
 import { hot } from 'react-hot-loader';
 

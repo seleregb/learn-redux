@@ -12,9 +12,9 @@ module.exports = {
     "./client/reduxstagram"
   ],
   output: {
-    path: path.join(__dirname, './dist/static'),
+    path: path.join(__dirname, 'dist'),
     filename: '[name].bundle.js',
-    publicPath: '/dist/static/'
+    // publicPath: '/static/'
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -25,15 +25,12 @@ module.exports = {
         'Content-Security-Policy': { 'http-equiv': 'Content-Security-Policy', 'content': 'default-src https:' },
         // Will generate: <meta http-equiv="Content-Security-Policy" content="default-src https:">
         // Which equals to the following http header: `Content-Security-Policy: default-src https:`
-        'set-cookie': { 'http-equiv': 'set-cookie', content: 'name=value; expires=date; path=url' },
-        // Will generate: <meta http-equiv="set-cookie" content="value; expires=date; path=url">
-        // Which equals to the following http header: `set-cookie: value; expires=date; path=url`
       }
     }),
     // new ReactRootPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': 'production'
+        NODE_ENV: "'production'"
       }
     })
   ],

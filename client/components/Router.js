@@ -19,18 +19,20 @@ const Single = (props) => (
   </DynamicImport>
 )
 
-
 @withRouter
-export class RouterComponent extends React.Component {
+class RouterComponent extends React.Component {
 
   render() {
+
     return (
       <div className="wrapper">
         <Switch>
-          <Route exact path="/" component={PhotoGrid} />
-          <Route path="/view/:postId" component={Single} />
+          <Route exact path={'/'} component={PhotoGrid} />
+          <Route path={'/view/:postId'} component={Single} />
         </Switch>
       </div>
     )
   }
 }
+
+export default RouterComponent;

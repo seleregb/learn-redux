@@ -1,5 +1,5 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-import { createBrowserHistory } from 'history';
+import { createHashHistory } from 'history';
 import thunk from "redux-thunk";
 import { routerMiddleware } from 'connected-react-router';
 
@@ -9,7 +9,7 @@ import rootReducer from './reducers/index';
 // activate redux dev tools extension if user has it installed
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export const history = createBrowserHistory({ basename: process.env.PUBLIC_URL });
+export const history = createHashHistory({ basename: process.env.PUBLIC_URL });
 
 // const store = createStore(rootReducer, composeEnhancers(
 //   applyMiddleware(thunk)
