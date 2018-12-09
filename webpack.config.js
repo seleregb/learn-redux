@@ -5,7 +5,6 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './client/reduxstagram.js',
-  devtool: 'cheap-source-map',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].bundle.js',
