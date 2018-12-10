@@ -34,6 +34,8 @@
     "eslint-plugin-react": "^5.0.1",
     "express": "^4.13.4",
     "history": "^4.7.2",
+    "preact": "^8.4.2",
+    "preact-compat": "^3.18.4",
     "raven-js": "^2.3.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",

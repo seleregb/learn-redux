@@ -48,5 +48,15 @@ module.exports = {
       filename: path.resolve(__dirname, './dist/index.html'),
     }),
     new webpack.NoEmitOnErrorsPlugin()
-  ]
+  ],
+  // if(isProd) {
+  //   return
+  //   resolve: {
+  //     alias: {
+  //       'react': 'preact-compat',
+  //         'react-dom': 'preact-compat'
+  //     }
+  //   }
+  // }
+
 }
