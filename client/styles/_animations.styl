@@ -12,6 +12,10 @@ offsets = translateX(-50%) translateY(-50%)
     opacity 1
     &.like-enter-active
       transform offsets scale(5)
-  .like-leave-active
-    display none
+  &.like-exit
+    opacity: 1;
+    &.like-leave-active
+      display none
+  .like-exit-done
+    opacity: 0;
     

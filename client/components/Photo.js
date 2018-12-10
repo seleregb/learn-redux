@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CSSTransition } from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from "react-redux";
 import { incrementLikes } from '../actions/actionCreators';
 
@@ -38,8 +38,9 @@ class Photo extends React.Component {
           </Link>
           {/* <img src={post.display_src} alt={post.caption} className="grid-photo" onClick={this.viewPostDetails}></img> */}
 
-
-          <CSSTransition classNames="like"
+          <CSSTransition in={true}
+            key={post.code}
+            classNames="like"
             timeout={500} unmountOnExit>
             <span key={post.likes} className="likes-heart">{post.likes}</span>
 
