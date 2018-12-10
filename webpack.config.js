@@ -2,19 +2,21 @@ var path = require('path');
 var webpack = require('webpack');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackRootPlugin = require('html-webpack-root-plugin');
+var args = require('yargs').argv;
+
+// parameters
+var isProd = args.mode;
+var baseName = '%PUBLIC_URL%';
 
 module.exports = {
   entry: './client/reduxstagram.js',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].bundle.js',
-    publicPath: '/static/'
+    filename: './static/[name].bundle.js',
   },
   devServer: {
-    // contentBase: './dist',
-    hot: true,
     historyApiFallback: true,
-    // noInfo: true,
     port: 7700
   },
   module: {
@@ -44,10 +46,11 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      title: 'Reduxstagram',
       template: './index.html',
-      filename: './index.html'
+      filename: path.resolve(__dirname, './dist/index.html'),
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
+    // new HtmlWebpackRootPlugin()
   ]
 }

@@ -1,23 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import DynamicImport from './DynamicImport';
-
-const Photo = (props) => (
-  <DynamicImport load={() => import('./Photo')}>
-    {(Component) => Component === null
-      ? <p>Loading</p>
-      : <Component {...props} />}
-  </DynamicImport>
-)
-
-const Comments = (props) => (
-  <DynamicImport load={() => import('./Comments')}>
-    {(Component) => Component === null
-      ? <p>Loading</p>
-      : <Component {...props} />}
-  </DynamicImport>
-)
+import Photo from './Photo';
+import Comments from './Comments';
 
 @withRouter
 @connect((store) => ({

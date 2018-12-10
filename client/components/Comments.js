@@ -5,6 +5,9 @@ class Comments extends React.Component {
 
   constructor(props) {
     super(props);
+    this.commentsForm = React.createRef();
+    this.author = React.createRef();
+    this.comment = React.createRef();
     this.deleteComment = this.deleteComment.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderComment = this.renderComment.bind(this);
@@ -28,9 +31,9 @@ class Comments extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const { postId } = this.props.match.params;
-    const { author, comment, commentForm } = this.refs;
-    this.props.dispatch(addComments(postId, author.value, comment.value));
-    commentForm.reset();
+    // const { author, comment } = this.refs;
+    this.props.dispatch(addComments(postId, this.author.value, this.comment.value));
+    this.commentsForm.reset();
   }
 
   deleteComment(index) {
@@ -45,9 +48,9 @@ class Comments extends React.Component {
     return (
       <div className="comments">
         {postComments.map(this.renderComment)}
-        <form ref="commentForm" className="comment-form" onSubmit={this.handleSubmit}>
-          <input type="text" ref="author" placeholder="author" />
-          <input type="text" ref="comment" placeholder="comment" />
+        <form ref={this.commentsForm} className="comment-form" onSubmit={this.handleSubmit}>
+          <input type="text" ref={this.author} placeholder="author" />
+          <input type="text" ref={this.comment} placeholder="comment" />
           <input type="submit" hidden />
         </form>
       </div>

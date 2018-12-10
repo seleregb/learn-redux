@@ -1,23 +1,21 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
-import DynamicImport from './DynamicImport';
+import Loadable from 'react-loadable';
+ 
+const PhotoGrid = Loadable({
+  loader: () => import('./PhotoGrid'),
+  loading() {
+    return <div>Loading...</div>
+  }
+});
 
-const PhotoGrid = (props) => (
-  <DynamicImport load={() => import('./PhotoGrid')}>
-    {(Component) => Component === null
-      ? <p>Loading</p>
-      : <Component {...props} />}
-  </DynamicImport>
-)
-
-const Single = (props) => (
-  <DynamicImport load={() => import('./Single')}>
-    {(Component) => Component === null
-      ? <p>Loading</p>
-      : <Component {...props} />}
-  </DynamicImport>
-)
+const Single = Loadable({
+  loader: () => import('./Single'),
+  loading() {
+    return <div>Loading...</div>
+  }
+});
 
 @withRouter
 class RouterComponent extends React.Component {
