@@ -11,5 +11,5 @@ node_js:
 install:
   - npm install
 script:
- - npm run build
+ - npm run build:travis_ci
 #  - npm run compile

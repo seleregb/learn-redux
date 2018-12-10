@@ -4,6 +4,7 @@
   "description": ":) ",
   "scripts": {
     "build:webpack": "webpack --mode production",
+    "build:travis_ci": "npm run build:webpack",
     "build": "npm run clean && npm run build:webpack & npm run build:404",
     "test": "NODE_ENV=production mocha './tests/**/*.spec.js' --compilers js:babel-core/register",
     "clean": "rimraf dist",
