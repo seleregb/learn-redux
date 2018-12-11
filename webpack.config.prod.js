@@ -2,20 +2,13 @@ var path = require('path');
 var webpack = require('webpack');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var args = require('yargs').argv;
-
-// parameters
-var isProd = args.mode;
 
 module.exports = {
+  mode: 'production',
   entry: './client/reduxstagram.js',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: './static/[name].bundle.js',
-  },
-  devServer: {
-    historyApiFallback: true,
-    port: 7700
   },
   module: {
     rules: [
@@ -49,14 +42,19 @@ module.exports = {
     }),
     new webpack.NoEmitOnErrorsPlugin()
   ],
-  // if(isProd) {
-  //   return
-  //   resolve: {
-  //     alias: {
-  //       'react': 'preact-compat',
-  //         'react-dom': 'preact-compat'
-  //     }
-  //   }
-  // }
-
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          warnings: false
+        }
+      })
+    ]
+  },
+  resolve: {
+    alias: {
+      'react': 'preact-compat',
+      'react-dom': 'preact-compat'
+    }
+  }
 }
