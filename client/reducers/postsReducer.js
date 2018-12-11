@@ -2,15 +2,14 @@ import { INCREMENT_LIKES, SINGLE_POST, ALL_POSTS } from '../actions/actionTypes'
 
 import posts from '../data/posts';
 
-const initialState = {
-  posts: posts,
-  locationBeforeTransitions: null
-}
+const initialState = [
+  ...posts
+]
 
-export const postsReducer = (state = initialState.posts, action) => {
+export const postsReducer = (state = initialState, action) => {
   switch (action.type) {
     case INCREMENT_LIKES:
-      let index = action.index;
+      let index = action.payload.index;
       return [
         ...state.slice(0, index),
         // before the one we are updating

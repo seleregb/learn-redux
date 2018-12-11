@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { removeComments, addComments } from '../actions/actionCreators';
 
-class Comments extends React.Component {
+class Comments extends Component {
 
   constructor(props) {
     super(props);
@@ -32,8 +32,9 @@ class Comments extends React.Component {
     e.preventDefault();
     const { postId } = this.props.match.params;
     // const { author, comment } = this.refs;
-    this.props.dispatch(addComments(postId, this.author.value, this.comment.value));
-    this.commentsForm.reset();
+    this.props.dispatch(addComments(postId, this.author.current.value, this.comment.current.value));
+    this.author.current.value = "";
+    this.comment.current.value = "";
   }
 
   deleteComment(index) {

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
 import Loadable from 'react-loadable';
- 
+
 const PhotoGrid = Loadable({
   loader: () => import('./PhotoGrid'),
   loading() {
@@ -18,7 +18,7 @@ const Single = Loadable({
 });
 
 @withRouter
-class RouterComponent extends React.Component {
+class RouterComponent extends Component {
 
   render() {
 

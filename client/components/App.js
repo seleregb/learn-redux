@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import RouterComponent from "./Router";
 import Header from "./Header";
 import { hot } from 'react-hot-loader';
 
-class App extends React.Component {
+class App extends Component {
   render() {
     const { history } = this.props;
     return (

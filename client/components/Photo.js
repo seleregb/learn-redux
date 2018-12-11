@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from "react-redux";
@@ -8,7 +8,7 @@ import { incrementLikes } from '../actions/actionCreators';
   comments: store.commentsReducer
 }))
 
-class Photo extends React.Component {
+class Photo extends Component {
 
   constructor(props) {
     super(props)

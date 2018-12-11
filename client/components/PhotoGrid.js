@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from 'react-router';
 import Photo from './Photo';
@@ -8,7 +8,7 @@ import Photo from './Photo';
   posts: store.postsReducer
 }))
 
-class PhotoGrid extends React.Component {
+class PhotoGrid extends Component {
 
   render() {
 

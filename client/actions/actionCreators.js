@@ -9,7 +9,7 @@ import { INCREMENT_LIKES, ADD_COMMENT, REMOVE_COMMENT, ALL_POSTS, SINGLE_POST } 
 // }
 
 export const incrementLikes = (index) => {
-  return (dispatch) => dispatch({ type: INCREMENT_LIKES, index });
+  return (dispatch) => dispatch({ type: INCREMENT_LIKES, payload: { index: index } });
 }
 
 // // Add Comment
@@ -24,7 +24,7 @@ export const incrementLikes = (index) => {
 
 export const addComments = (postId, author, comment) => {
   return (dispatch) => dispatch({
-    type: ADD_COMMENT, postId, author, comment
+    type: ADD_COMMENT, payload: { postId: postId, author: author, comment: comment }
   });
 }
 
@@ -39,7 +39,7 @@ export const addComments = (postId, author, comment) => {
 
 export const removeComments = (postId, index) => {
   return (dispatch) => dispatch({
-    type: REMOVE_COMMENT, index, postId
+    type: REMOVE_COMMENT, payload: { index: index, postId: postId }
   });
 }
 

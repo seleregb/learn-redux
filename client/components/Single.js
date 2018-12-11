@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import Photo from './Photo';
@@ -9,7 +9,7 @@ import Comments from './Comments';
   posts: store.postsReducer,
   comments: store.commentsReducer
 }))
-class Single extends React.Component {
+class Single extends Component {
   render() {
 
     const { postId } = this.props.match.params;
